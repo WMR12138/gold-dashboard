@@ -15,12 +15,12 @@ if git diff --staged --quiet; then
 fi
 git -c user.name="gold-dashboard-bot" -c user.email="bot@users.noreply.github.com" \
     commit -q -m "chore: daily update $(TZ=Asia/Shanghai date +%F)"
-for i in 1 2 3; do
+for i in 1 2 3 4 5 6; do
   if git -c credential.helper="store --file=$CRED" push origin main 2>&1 | tail -2; then
     echo "PUSHED"
     exit 0
   fi
-  sleep 5
+  sleep 10
 done
 echo "PUSH_FAILED"
 exit 1
